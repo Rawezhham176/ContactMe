@@ -7,7 +7,8 @@ form.onsubmit = (e) => {
     statusTxt.style.color = "#0d6efd"
     
     let xhr = new XMLHttpRequest()
-    xhr.onreadystatechange = () => {
+   
+    xhr.onloadstart = () => {
         if(xhr.readyState == 4 && xhr.status == 200) {
             let response = xhr.response
             if(response.indexOf("Enter a valid emal adresse!") != -1 ||
@@ -22,8 +23,8 @@ form.onsubmit = (e) => {
             statusTxt.innerText = response
         }
     }
-    xhr.open("POST", "message.php", true)
 
+    xhr.open('POST', 'message.php', true)
     let formData = new FormData(form)
     xhr.send(formData)
 }
